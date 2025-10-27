@@ -1,5 +1,12 @@
 version: '3.9'
 services:
+  web:
+    build:
+      context: ./web
+    container_name: multimodal-web
+    restart: unless-stopped
+    ports:
+      - "10091:80"
   api:
     build: .
     container_name: multimodal-api

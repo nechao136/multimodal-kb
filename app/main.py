@@ -1,5 +1,7 @@
 # app/main.py
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
 from app.services import parser, vector_store, search
@@ -13,6 +15,15 @@ for p in (UPLOAD_DIR, EXTRACT_DIR, IMAGE_DIR):
     p.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(title="Multimodal Knowledge Base (MVP)")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 或者指定前端域名
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.mount("/data", StaticFiles(directory=DATA_DIR), name="data")
 
 @app.on_event("startup")
 def startup_event():
