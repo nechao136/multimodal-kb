@@ -1,6 +1,5 @@
 # app/models/text_embedder.py
 from sentence_transformers import SentenceTransformer
-import numpy as np
 from typing import List
 
 class TextEmbedder:

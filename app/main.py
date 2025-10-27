@@ -1,7 +1,5 @@
 # app/main.py
 from fastapi import FastAPI, UploadFile, File, HTTPException, Query
-from typing import List
-import os
 from pathlib import Path
 
 from app.services import parser, vector_store, search
