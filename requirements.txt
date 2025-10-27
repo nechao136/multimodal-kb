@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+qdrant-client
+sentence-transformers
+torch
+transformers
+pymupdf
+markdown-it-py
+Pillow
+requests
+numpy

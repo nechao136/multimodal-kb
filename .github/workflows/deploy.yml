@@ -1,0 +1,22 @@
+name: Auto Deploy
+
+# 触发条件
+on:
+  push:
+    branches:
+      - main   # 或你希望自动发布的分支
+
+jobs:
+  build-and-deploy:
+    runs-on:
+      - self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        run: |
+          # 先停止
+          sudo docker compose down --rmi local -v
+          # 再启动
+          sudo docker compose up --build -d
