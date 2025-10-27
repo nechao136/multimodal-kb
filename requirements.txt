@@ -1,5 +1,4 @@
 fastapi
-pathlib
 uvicorn
 qdrant-client
 sentence-transformers
@@ -10,10 +9,6 @@ markdown-it-py
 Pillow
 requests
 numpy
-uuid
 markdown
-fitz
 bs4
-shutil
-urllib
 
