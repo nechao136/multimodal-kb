@@ -11,4 +11,5 @@ requests
 numpy
 markdown
 bs4
+python-multipart
 
