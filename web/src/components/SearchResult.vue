@@ -12,7 +12,7 @@ export default class SearchResult extends Vue {
     if (path.startsWith('http')) {
       return path
     }
-    return `http://150.109.15.178:10090/data/${path}`
+    return `http://150.109.15.178:10090/${path}`
   }
 
 }
@@ -20,23 +20,27 @@ export default class SearchResult extends Vue {
 
 <template>
   <div class="search-result">
-    <h3>文本检索结果</h3>
-    <el-card v-for="(item, idx) in results.texts" :key="idx" style="margin-bottom: 10px;">
-      <div><strong>score:</strong> {{item.score.toFixed(3)}}</div>
-      <div><strong>source:</strong> {{item.payload.source}}</div>
-      <div style="white-space: pre-wrap;">{{item.payload.text}}</div>
-    </el-card>
+    <div v-if="results && results.texts">
+      <h3>文本检索结果</h3>
+      <el-card v-for="(item, idx) in results.texts" :key="idx" style="margin-bottom: 10px;">
+        <div><strong>score:</strong> {{item.score.toFixed(3)}}</div>
+        <div><strong>source:</strong> {{item.payload.source}}</div>
+        <div style="white-space: pre-wrap;">{{item.payload.text}}</div>
+      </el-card>
+    </div>
 
-    <h3 style="margin-top:20px;">图片检索结果</h3>
-    <el-row :gutter="10">
-      <el-col :span="6" v-for="(item, idx) in results.images" :key="idx">
-        <el-card>
-          <img alt="" :src="getImageUrl(item.payload.image_path)" style="width:100%;height:auto;" />
-          <div><strong>score:</strong> {{item.score.toFixed(3)}}</div>
-          <div style="font-size:12px; color:#666;">{{item.payload.source}}</div>
-        </el-card>
-      </el-col>
-    </el-row>
+    <div v-if="results && results.images">
+      <h3 style="margin-top:20px;">图片检索结果</h3>
+      <el-row :gutter="10">
+        <el-col :span="6" v-for="(item, idx) in results.images" :key="idx">
+          <el-card>
+            <img alt="" :src="getImageUrl(item.payload.image_path)" style="width:100%;height:auto;" />
+            <div><strong>score:</strong> {{item.score.toFixed(3)}}</div>
+            <div style="font-size:12px; color:#666;">{{item.payload.source}}</div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
